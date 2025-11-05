@@ -1,0 +1,65 @@
+body {
+  display: flex;
+  justify-content: center; 
+  align-items: center;     
+  
+  min-height: 100vh; 
+  margin: 0; 
+  padding: 0; 
+  
+  /* --- REGRAS DO BACKGROUND DINÂMICO --- */
+  background: linear-gradient(
+    -45deg,
+    #1b5e20,  /* 🟢 Verde Escuro */
+    #ff8f00,  /* 🟠 Amarelo Queimado */
+    #1b5e20,
+    #ff8f00
+  );
+  
+  background-size: 400% 400%; 
+  animation: corCiclo 15s ease infinite; 
+}
+
+
+@keyframes corCiclo {
+  0% {
+    background-position: 0% 50%; 
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+
+}
+
+.card-cadastro{
+    width: 750px;
+    height: 540px;
+    background-color:aqua;
+    border:black solid 2px;
+    border-radius: 4px;
+    display:flex;
+    align-items:center;
+    flex-direction:column;
+    justify-content: space-around;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="date"],
+input[type="tel"],
+input[type="password"]{
+    width: 35%;
+    height: 30px;
+    padding: 5px;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+button{
+    width:35%;
+    height:30px;
+    padding:5px;
+    font-family:Arial, Helvetica, sans-serif;
+}
