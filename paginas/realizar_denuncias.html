@@ -1,11 +1,40 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fazer Denúncia</title>
+  <link rel="stylesheet" href="../css/realizar_denuncias.css">
+  <script src="../js/denuncias.js"></script>
 </head>
 <body>
-    
+  <header>
+    <div class="cabecalho">
+      <h1 class="logo">EcoSave Resgates</h1>
+      <ul class="menu">
+        <li><a href=cadastro.html>Cadastre-se!</a></li>
+        <li><a href="../index.html">Início</a></li>
+        <li><a href="mostrar_denuncias.html" class="ativo">Ver Denuncias</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <div class="container-form">
+    <h2>Formulário de Denúncia</h2>
+
+    <form id="form-denuncia">
+      <input type="date" id="data_denuncia" name="data_denuncia" placeholder="Data da Denúncia" required>
+      <input type="text" id="local_denuncia" name="local_denuncia" placeholder="Local da Denúncia" required>
+      <input type="text" id="desc_denuncia" name="desc_denuncia" placeholder="Descrição da Denúncia" required>
+      <input type="number" id="num_animais" name="num_animais" placeholder="Quantidade de Animais" required>
+      <input type="text" id="especie" name="especie" placeholder="Espécie do Animal" required>
+      <button type="button" class="botao" onclick="enviar()">Enviar Denúncia</button>
+    </form>
+  </div>
+
+  <footer>
+    <p>© 2025 EcoSave Resgates — Todos os direitos reservados.</p>
+  </footer>
+
 </body>
 </html>

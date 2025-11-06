@@ -1,23 +1,37 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página Inicial</title>
-    <script src="js/cadastro.js"></script>
-    <link rel="stylesheet" href="css/cadastro.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EcoSave Inicio</title>
+  <link rel="stylesheet" href="css/pag_inicial.css">
 </head>
 <body>
-    
-    <form class="card-cadastro" id="cadastro">
-        Seja Bem-Vindo!<br>
-        Cadastre-se preenchendo o formulario abaixo<br>
-        <input type="text" id="nome" name="nome" placeholder="Digite seu Nome!"><br>
-        <input type="email" id="email" name="email" placeholder="Digite seu E-mail!"><br>
-        <input type="date" id="data" name="data" placeholder="Sua data de Nascimento!"><br>
-        <input type="tel" id="tel" name="telefone" placeholder="Seu N° de Telefone!"><br>
-        <input type="password" id="senha" name="senha" placeholder="Digite sua melhor Senha!"><br>
-        <button type="button" onclick="cadastro()">Cadastre-se Aqui!</button>
-    </form> 
+
+<header>
+   <div class="cabecalho">
+      <h1 class="logo">EcoSave Resgates</h1>
+      <ul class="menu">
+        <li><a href=paginas/cadastro.html>Cadastre-se!</a></li>
+        <li><a href="index.html">Início</a></li>
+        <li><a href="#">Sobre</a></li>
+        <li><a href="paginas/realizar_denuncias.html">Denunciar</a></li>
+        <li><a href="#">Contato</a></li>
+      </ul>
+    </div>
+</header>
+
+  <div class="container-principal">
+      <div class="conteudo-principal">
+        <h2>Proteja a vida silvestre</h2>
+        <p>Denuncie o tráfico e maus-tratos de animais silvestres. Sua voz faz a diferença!</p>
+        <a href="paginas/realizar_denuncias.html" class="botao">Fazer Denúncia</a>
+      </div>
+  </div>
+
+<footer>
+  <p>© 2025 EcoSave Resgates — Todos os direitos reservados.</p>
+</footer>
+
 </body>
 </html>

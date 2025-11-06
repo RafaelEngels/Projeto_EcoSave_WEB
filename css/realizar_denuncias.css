@@ -1,0 +1,96 @@
+/* Reset simples */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+  color: #333;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Cabeçalho simples */
+.cabecalho {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #2a5934;
+  padding: 1rem 2rem;
+}
+
+.logo {
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.menu {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+}
+
+.menu a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.menu a.ativo {
+  text-decoration: underline;
+}
+
+/* Container do formulário */
+.container-form {
+  max-width: 400px;
+  width: 90%;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  background-color: #fff;
+  border-radius: 6px;
+  text-align: center;
+}
+
+/* Título */
+.container-form h2 {
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+  color: #2a5934;
+}
+
+/* Inputs e botão */
+input {
+  width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.botao {
+  width: 100%;
+  padding: 0.6rem;
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.botao:hover {
+  background-color: #43a047;
+}
+
+/* Rodapé */
+footer {
+  text-align: center;
+  padding: 1rem;
+  background-color: #2a5934;
+  color: #fff;
+  margin-top: auto;
+}

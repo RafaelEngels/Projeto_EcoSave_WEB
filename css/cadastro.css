@@ -1,17 +1,20 @@
 body {
   display: flex;
   justify-content: center; 
-  align-items: center;     
+  align-items: center;
+  flex-direction:column;
+  font-family: "Poppins", sans-serif;
+     
   
   min-height: 100vh; 
   margin: 0; 
   padding: 0; 
   
-  /* --- REGRAS DO BACKGROUND DINÂMICO --- */
+
   background: linear-gradient(
     -45deg,
-    #1b5e20,  /* 🟢 Verde Escuro */
-    #ff8f00,  /* 🟠 Amarelo Queimado */
+    #1b5e20,  
+    #ff8f00,  
     #1b5e20,
     #ff8f00
   );
@@ -20,6 +23,9 @@ body {
   animation: corCiclo 15s ease infinite; 
 }
 
+header{
+  width:100%
+}
 
 @keyframes corCiclo {
   0% {
@@ -34,32 +40,80 @@ body {
 
 }
 
-.card-cadastro{
-    width: 750px;
+.card-cadastro {
+    width: 550px;
     height: 540px;
-    background-color:aqua;
-    border:black solid 2px;
+    background-color: aqua;
+    border: 2px solid black;
     border-radius: 4px;
-    display:flex;
-    align-items:center;
-    flex-direction:column;
-    justify-content: space-around;
+    padding: 20px;              
+    box-sizing: border-box;     
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;                  
 }
 
 input[type="text"],
 input[type="email"],
 input[type="date"],
 input[type="tel"],
-input[type="password"]{
-    width: 35%;
-    height: 30px;
-    padding: 5px;
-    font-family:Arial, Helvetica, sans-serif;
+input[type="password"] {
+    width: 80%;          /* maior e mais confortável */
+    height: 35px;
+    padding: 8px;
+    font-family: Arial, Helvetica, sans-serif;
+    border-radius: 4px;
+    border: 1px solid #ccc;
 }
 
-button{
-    width:35%;
-    height:30px;
-    padding:5px;
-    font-family:Arial, Helvetica, sans-serif;
+button {
+    width: 80%;
+    height: 40px;
+    padding: 8px;
+    font-family: Arial, Helvetica, sans-serif;
+    cursor: pointer;
+    background-color: #2a5934;  /* Combina com o header */
+    color: white;
+    border: none;
+    border-radius: 4px;
+}
+
+button:hover {
+    background-color: #24492c;
+}
+
+
+.cabecalho {
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #2a5934;
+  padding: 1rem 2rem;
+    font-family: "Poppins", sans-serif;
+}
+
+.logo {
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.menu {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+
+.menu a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.menu a:hover {
+  text-decoration: underline;
 }
