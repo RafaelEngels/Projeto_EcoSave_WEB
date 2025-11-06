@@ -6,16 +6,15 @@ function cadastro(){
         method:"POST",
         body:dados
     })
-    .then(response => response.json()) // 1. Recebe a resposta e converte para JSON
+    .then(response => response.json()) 
     .then(data => {
-        // 2. Verifica o status 'sucesso' retornado pelo PHP
-        alert(data.mensagem); // 3. Mostra o ALERTA para o cliente
+
+        alert(data.mensagem); 
 
         if (data.sucesso) {
-            // Se for sucesso, redireciona para a página inicial
+
             window.location.href = '../paginas/pagina_inicial.html'; 
         }
-        // Se for erro, o alert já mostrou a mensagem, e o usuário permanece no formulário.
     })
     .catch(error => {
         // Trata erros de rede ou de parsing do JSON

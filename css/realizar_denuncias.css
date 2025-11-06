@@ -14,7 +14,7 @@ body {
   flex-direction: column;
 }
 
-/* Cabeçalho simples */
+
 .cabecalho {
   display: flex;
   justify-content: space-between;
@@ -44,7 +44,7 @@ body {
   text-decoration: underline;
 }
 
-/* Container do formulário */
+
 .container-form {
   max-width: 400px;
   width: 90%;
@@ -62,7 +62,7 @@ body {
   color: #2a5934;
 }
 
-/* Inputs e botão */
+
 input {
   width: 100%;
   padding: 0.5rem;
@@ -86,7 +86,7 @@ input {
   background-color: #43a047;
 }
 
-/* Rodapé */
+
 footer {
   text-align: center;
   padding: 1rem;

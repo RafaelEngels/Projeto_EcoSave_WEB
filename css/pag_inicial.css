@@ -1,4 +1,4 @@
-/* Reset básico */
+
 * {
   margin: 0;
   padding: 0;
@@ -46,7 +46,7 @@ body {
 
 
 .container-principal {
-  background: url('https://images.unsplash.com/photo-1578321272430-3e77f8de51c4?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+  background-color: #d6bfa8;
   height: 80vh;
   display: flex;
   align-items: center;
@@ -94,7 +94,7 @@ body {
   background-color: #43a047;
 }
 
-/* ====== RODAPÉ ====== */
+
 footer {
   background-color: #2a5934;
   color: white;

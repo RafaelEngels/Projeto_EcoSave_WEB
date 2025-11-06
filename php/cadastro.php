@@ -26,12 +26,12 @@
 
     if ($resultado) {
         
-        // --- SUCESSO ---
+
         echo json_encode(['sucesso' => true, 'mensagem' => 'Usuário cadastrado com sucesso!']);
         
     } else {
         
-        // --- FALHA NA QUERY ---
+
         $erro_mysql = mysqli_error($conexao);
         retornar_erro("ERRO no banco de dados: " . $erro_mysql);
     }
