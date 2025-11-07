@@ -1,0 +1,55 @@
+
+
+.cabecalho {
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #2a5934;
+  padding: 1rem 2rem;
+    font-family: "Poppins", sans-serif;
+}
+
+.logo {
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.menu {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+
+.menu a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.menu a:hover {
+  text-decoration: underline;
+}
+
+/* área onde as denúncias serão exibidas */
+#mostrar {
+  margin-top: 20px;
+  padding: 10px;
+  font-family: Arial, sans-serif;
+  display:flex
+}
+
+/* cada denúncia inserida pelo JS */
+.denuncia {
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: #f9f9f9;
+}
+
+.denuncia p {
+  margin: 4px 0;
+}

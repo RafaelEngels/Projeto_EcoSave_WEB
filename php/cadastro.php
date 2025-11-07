@@ -1,38 +1,34 @@
 <?php
-    // Define o tipo de conteúdo como JSON para o JavaScript
-    header('Content-Type: application/json; charset=utf-8'); 
-    
-    // Função utilitária para retornar erro em JSON
-    function retornar_erro($mensagem) {
-        echo json_encode(['sucesso' => false, 'mensagem' => $mensagem]);
-        exit();
-    }
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
-    $nome = $_POST["nome"] ?? '';
-    $email= $_POST["email"] ?? '';
-    $data = $_POST["data"] ?? '';
-    $telefone = $_POST["telefone"] ?? '';
-    $senha = $_POST["senha"] ?? '';
+header('Content-Type: application/json; charset=utf-8');
 
-    if (empty($nome) || empty($email) || empty($data) || empty($senha)) {
-        retornar_erro("ERRO: Todos os campos obrigatórios devem ser preenchidos!");
-    }
-    
-    include "conexao.php"; 
+$nome = trim($_POST["nome"] ?? '');
+$email = trim($_POST["email"] ?? '');
+$data = trim($_POST["data"] ?? '');
+$telefone = trim($_POST["telefone"] ?? '');
+$senhaCriptografada = trim($_POST["senha"] ?? '');
+$chaveEncriptada = trim($_POST["chave"] ?? '');
 
-    $query = "INSERT INTO usuarios (nome, email, data_nascimento, telefone, senha) VALUES ('$nome','$email', '$data', '$telefone', '$senha')";
-    
-    $resultado = mysqli_query($conexao, $query);
+if (empty($nome) || empty($email) || empty($data) || empty($senhaCriptografada) || empty($chaveEncriptada)) {
+    echo json_encode(['sucesso' => false, 'mensagem' => 'Todos os campos obrigatórios devem ser preenchidos!']);
+    exit();
+}
 
-    if ($resultado) {
-        
+include "conexao.php";
 
-        echo json_encode(['sucesso' => true, 'mensagem' => 'Usuário cadastrado com sucesso!']);
-        
-    } else {
-        
+$stmt = $conexao->prepare("INSERT INTO usuarios (nome, email, data_nascimento, telefone, senha) VALUES (?, ?, ?, ?, ?)");
+if (!$stmt) {
+    echo json_encode(['sucesso' => false, 'mensagem' => 'Erro na preparação da query: ' . $conexao->error]);
+    exit();
+}
+$stmt->bind_param("sssss", $nome, $email, $data, $telefone, $senhaCriptografada);
 
-        $erro_mysql = mysqli_error($conexao);
-        retornar_erro("ERRO no banco de dados: " . $erro_mysql);
-    }
-?>
+if ($stmt->execute()) {
+    echo json_encode(['sucesso' => true, 'mensagem' => 'Usuário cadastrado com sucesso!']);
+} else {
+    echo json_encode(['sucesso' => false, 'mensagem' => 'Erro no banco de dados: ' . $stmt->error]);
+}
+$stmt->close();
