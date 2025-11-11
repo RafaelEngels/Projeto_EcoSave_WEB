@@ -1,0 +1,16 @@
+Este documento de texto detalha a criaçao do nosso Trabalho.
+Nós aproveitamos o contexto de nossa máteria "Arquitetura de Banco de Dados" onde tivemos a ideia de criar um banco para um determinado negócio/ramo, que no nosso caso foi o de Resgates de Animais Silvestres por meio de denuncias feitas por pessoas.
+A descrição técnica do nosso trabalho é, tem a página inicial onde você pode percorrer para as outras páginas do site, na aba "Denunciar" é se você é um desses usuários que querem fazer uma ocorrência de denuncia e lá você preenche as informaçoes necessarias, esta ocorrência de denuncia ficará gravada no banco de dados da EcoSave, na aba "Ver Denuncias", o sistema pega as ocorrências de denuncias gravadas no Banco e mostra na tela, se você é da Equipe de Resgate que fará o Resgate, esta aba é bem útil e necessária para você, se você tem função de coletar dados para fazer X, Y pesquisas, levantar estatísticas, esta aba também é util para você.
+O site contém um sistema de cadastro que guarda as informações do usuario no Banco de Dados, os dados são guardados com um sistema de criptografia hibrida básica.
+O login do site pega o que foi digitado pelo usuario e verifica se o usuario existe no Banco de Dados, se tiver correspondencia, login foi realizado com sucesso, se não, você precisa se cadastrar.
+O site não obriga o usuário a se cadastrar para acessar o site pois não é esse o objetivo principal, apesar de ser benéfico.
+Além disso, o trabalho é feito para garantir que saibemos com êxito a comunicação entre o servidor, o cliente, e o banco de dados de forma âutonoma, no nosso projeto, tudo é feito localmente e não funcionaria na prática nem no comercial, mas serve de um bom modelo inicial.
+
+Obrigado por Ler sobre nosso Projeto!
+
+Integrantes do Sistemas WEB:
+Rafael Engel Schlenker Camargo
+João Miguel Maraschin Pooter
+Gustavo Henrique Levis
+
+Documento formalizado por Rafael Engel
