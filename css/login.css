@@ -1,0 +1,175 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: #f5f7fa;
+  color: #333;
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Cabeçalho */
+.cabecalho {
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #2a5934;
+  padding: 1rem 2rem;
+    font-family: "Poppins", sans-serif;
+}
+
+.logo {
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.menu {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+
+.menu a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.menu a:hover {
+  text-decoration: underline;
+}
+
+/* Container principal */
+.container-principal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+  padding: 2rem;
+}
+
+/* Formulário de login */
+.form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 500px;
+}
+
+.form-login {
+  background-color: white;
+  padding: 2.5rem;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  width: 100%;
+  margin-bottom: 1.5rem;
+}
+
+.form-login h2 {
+  color: #2d5e3b;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+.campo-form {
+  margin-bottom: 1.5rem;
+}
+
+.campo-form label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #555;
+  font-weight: 500;
+}
+
+.campo-form input {
+  width: 100%;
+  padding: 0.9rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: all 0.3s;
+}
+
+.campo-form input:focus {
+  border-color: #2d5e3b;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(45, 94, 59, 0.1);
+}
+
+.botao {
+  background-color: #2d5e3b;
+  color: white;
+  border: none;
+  padding: 0.9rem 1.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+  width: 100%;
+  transition: background-color 0.3s, transform 0.2s;
+  margin-top: 0.5rem;
+}
+
+.botao:hover {
+  background-color: #3a7a4a;
+  transform: translateY(-2px);
+}
+
+.botao:active {
+  transform: translateY(0);
+}
+
+.links-login {
+  margin-top: 1.5rem;
+  text-align: center;
+}
+
+.links-login a {
+  color: #2d5e3b;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.links-login a:hover {
+  color: #3a7a4a;
+  text-decoration: underline;
+}
+
+.links-login p {
+  margin-bottom: 0.8rem;
+}
+
+.info-box {
+  background-color: #e8f5e9;
+  border-left: 4px solid #2d5e3b;
+  padding: 1rem;
+  border-radius: 4px;
+  margin-top: 1.5rem;
+}
+
+.info-box h3 {
+  color: #2d5e3b;
+  margin-bottom: 0.5rem;
+}
+
+footer {
+  background-color: #2a5934;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+  margin-top: auto;
+}

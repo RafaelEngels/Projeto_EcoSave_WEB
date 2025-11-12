@@ -16,8 +16,6 @@ function cadastro() {
 
   // 4. Criptografar a chave AES com RSA usando a chave pública
   var rsa = new JSEncrypt();
-
-  // CHAVE PÚBLICA RSA (coloque sua chave pública real aqui)
   rsa.setPublicKey(`-----BEGIN PUBLIC KEY-----
 MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvIKUh0MjocBcFhNZMhw5
 2GyseU4EdO5yp9MCNAcmyARufM4UZLsj2qmy5I4b+t662l3dJYj07KbdnRJw74LY
@@ -28,17 +26,24 @@ k7vJevvi03RaFL4D6EKRFn5zU+eMWyb1wX1pTDbuAwqAtpPnurYxxaRDNjQ7MzU1
 KQIDAQAB
 -----END PUBLIC KEY-----`);
 
-  var chaveEncriptada = rsa.encrypt(aesKey);
+  var chaveCriptografada = rsa.encrypt(aesKey);
 
-  if (!chaveEncriptada) {
-    alert('Erro ao criptografar chave AES com RSA');
+  if (!chaveCriptografada) {
+    alert('Erro ao criptografar chave AES com RSA.');
     return;
   }
 
   // 5. Adicionar a chave AES encriptada ao form (campo extra)
-  dados.set('chave', chaveEncriptada);
+  dados.append('chave', chaveCriptografada);
 
-  // 6. Enviar para PHP via fetch
+  // 🔎 Teste opcional — verificar o que está sendo enviado
+  /*
+  for (var [k, v] of dados.entries()) {
+    console.log(k, v);
+  }
+  */
+
+  // 6. Enviar para o PHP
   fetch("../php/cadastro.php", {
     method: "POST",
     body: dados
@@ -46,7 +51,7 @@ KQIDAQAB
   .then(response => {
     if (!response.ok) {
       return response.text().then(text => {
-        throw new Error('Erro HTTP: ' + response.status + ' - ' + text);
+        throw new Error("Erro HTTP: " + response.status + " - " + text);
       });
     }
     return response.json();
@@ -54,11 +59,11 @@ KQIDAQAB
   .then(data => {
     alert(data.mensagem);
     if (data.sucesso) {
-      window.location.href = '../index.html';
+      window.location.href = "login.html";
     }
   })
   .catch(error => {
-    console.error('Erro de conexão ou JSON:', error);
-    alert('Ocorreu um erro inesperado ao conectar ao servidor: ' + error.message);
+    console.error("Erro de conexão ou JSON:", error);
+    alert("Ocorreu um erro inesperado: " + error.message);
   });
 }

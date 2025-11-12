@@ -19,16 +19,22 @@ if (empty($nome) || empty($email) || empty($data) || empty($senhaCriptografada) 
 
 include "conexao.php";
 
-$stmt = $conexao->prepare("INSERT INTO usuarios (nome, email, data_nascimento, telefone, senha) VALUES (?, ?, ?, ?, ?)");
+// ⚠️ Agora o INSERT inclui a coluna "chave"
+$stmt = $conexao->prepare("INSERT INTO usuarios (nome, email, data_nascimento, telefone, senha, chave) VALUES (?, ?, ?, ?, ?, ?)");
 if (!$stmt) {
     echo json_encode(['sucesso' => false, 'mensagem' => 'Erro na preparação da query: ' . $conexao->error]);
     exit();
 }
-$stmt->bind_param("sssss", $nome, $email, $data, $telefone, $senhaCriptografada);
+
+// ⚠️ Novo parâmetro para a chave (6 valores)
+$stmt->bind_param("ssssss", $nome, $email, $data, $telefone, $senhaCriptografada, $chaveEncriptada);
 
 if ($stmt->execute()) {
     echo json_encode(['sucesso' => true, 'mensagem' => 'Usuário cadastrado com sucesso!']);
 } else {
     echo json_encode(['sucesso' => false, 'mensagem' => 'Erro no banco de dados: ' . $stmt->error]);
 }
+
 $stmt->close();
+$conexao->close();
+?>

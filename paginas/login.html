@@ -4,391 +4,64 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>EcoSave Login</title>
+
+  <!-- Bibliotecas externas -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/jsencrypt/bin/jsencrypt.min.js"></script>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-    
-    body {
-      background-color: #f5f7fa;
-      color: #333;
-      line-height: 1.6;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-    
-    /* Cabeçalho */
-    .cabecalho {
-      background-color: #2d5e3b;
-      color: white;
-      padding: 1rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    }
-    
-    .logo {
-      font-size: 1.8rem;
-      font-weight: bold;
-      display: flex;
-      align-items: center;
-    }
-    
-    .logo::before {
-      margin-right: 10px;
-      font-size: 2rem;
-    }
-    
-    .menu {
-      list-style: none;
-      display: flex;
-      gap: 1.5rem;
-    }
-    
-    .menu a {
-      color: white;
-      text-decoration: none;
-      transition: color 0.3s;
-      font-weight: 500;
-      padding: 0.5rem 0.8rem;
-      border-radius: 4px;
-    }
-    
-    .menu a:hover {
-      color: #c1e8c3;
-      background-color: rgba(255, 255, 255, 0.1);
-    }
-    
-    /* Container principal */
-    .container-principal {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-grow: 1;
-      padding: 2rem;
-    }
-    
-    /* Formulário de login */
-    .form-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      width: 100%;
-      max-width: 500px;
-    }
-    
-    .form-login {
-      background-color: white;
-      padding: 2.5rem;
-      border-radius: 10px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-      width: 100%;
-      margin-bottom: 1.5rem;
-    }
-    
-    .form-login h2 {
-      color: #2d5e3b;
-      margin-bottom: 1.5rem;
-      text-align: center;
-      font-size: 1.8rem;
-      font-weight: 600;
-    }
-    
-    .campo-form {
-      margin-bottom: 1.5rem;
-    }
-    
-    .campo-form label {
-      display: block;
-      margin-bottom: 0.5rem;
-      color: #555;
-      font-weight: 500;
-    }
-    
-    .campo-form input {
-      width: 100%;
-      padding: 0.9rem;
-      border: 1px solid #ddd;
-      border-radius: 6px;
-      font-size: 1rem;
-      transition: all 0.3s;
-    }
-    
-    .campo-form input:focus {
-      border-color: #2d5e3b;
-      outline: none;
-      box-shadow: 0 0 0 3px rgba(45, 94, 59, 0.1);
-    }
-    
-    .botao {
-      background-color: #2d5e3b;
-      color: white;
-      border: none;
-      padding: 0.9rem 1.5rem;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 1rem;
-      font-weight: bold;
-      width: 100%;
-      transition: background-color 0.3s, transform 0.2s;
-      margin-top: 0.5rem;
-    }
-    
-    .botao:hover {
-      background-color: #3a7a4a;
-      transform: translateY(-2px);
-    }
-    
-    .botao:active {
-      transform: translateY(0);
-    }
-    
-    .links-login {
-      margin-top: 1.5rem;
-      text-align: center;
-    }
-    
-    .links-login a {
-      color: #2d5e3b;
-      text-decoration: none;
-      font-weight: 500;
-      transition: color 0.3s;
-    }
-    
-    .links-login a:hover {
-      color: #3a7a4a;
-      text-decoration: underline;
-    }
-    
-    .links-login p {
-      margin-bottom: 0.8rem;
-    }
-    
-    .info-box {
-      background-color: #e8f5e9;
-      border-left: 4px solid #2d5e3b;
-      padding: 1rem;
-      border-radius: 4px;
-      margin-top: 1.5rem;
-    }
-    
-    .info-box h3 {
-      color: #2d5e3b;
-      margin-bottom: 0.5rem;
-    }
-    
-    /* Rodapé */
-    footer {
-      background-color: #2d5e3b;
-      color: white;
-      text-align: center;
-      padding: 1.5rem;
-      margin-top: auto;
-    }
-    
-    /* Mensagens de erro/sucesso */
-    .mensagem {
-      padding: 0.8rem;
-      border-radius: 6px;
-      margin-bottom: 1rem;
-      text-align: center;
-      font-weight: 500;
-    }
-    
-    .mensagem.erro {
-      background-color: #ffebee;
-      color: #c62828;
-      border: 1px solid #ffcdd2;
-    }
-    
-    .mensagem.sucesso {
-      background-color: #e8f5e9;
-      color: #2e7d32;
-      border: 1px solid #c8e6c9;
-    }
-    
-    /* Responsividade */
-    @media (max-width: 768px) {
-      .cabecalho {
-        flex-direction: column;
-        gap: 1rem;
-        padding: 1rem;
-      }
-      
-      .menu {
-        flex-wrap: wrap;
-        justify-content: center;
-      }
-      
-      .form-login {
-        padding: 1.8rem;
-      }
-      
-      .container-principal {
-        padding: 1rem;
-      }
-    }
-  </style>
+
+  <!-- CSS externo -->
+  <link rel="stylesheet" href="../css/login.css">
 </head>
 <body>
 
-<header>
+  <header>
    <div class="cabecalho">
       <h1 class="logo">EcoSave Resgates</h1>
       <ul class="menu">
-        <li><a href="cadastro.html">Cadastre-se!</a></li>
+        <li><a href=cadastro.html>Cadastre-se!</a></li>
+        <li><a href="../index.html">Início</a></li>
         <li><a href="realizar_denuncias.html">Denunciar</a></li>
-        <li><a href="mostrar_denuncias.html">Ver Denúncias</a></li>
         <li><a href="pag_sobre.html">Sobre</a></li>
       </ul>
     </div>
-</header>
+  </header>
 
   <div class="container-principal">
-      <div class="form-container">
-        <div class="form-login">
-          <h2>Faça seu login</h2>
-          <div id="mensagem" class="mensagem" style="display: none;"></div>
-          <form id="formLogin">
-            <div class="campo-form">
-              <label for="email">E-mail</label>
-              <input type="email" id="email" name="email" required>
-            </div>
-            
-            <div class="campo-form">
-              <label for="senha">Senha</label>
-              <input type="password" id="senha" name="senha" required>
-            </div>
-            
-            <button type="submit" class="botao">Entrar</button>
-            
-            <div class="links-login">
-              <p><a href="#" id="esqueciSenha">Esqueci minha senha</a></p>
-              <p>Não tem uma conta? <a href="cadastro.html">Cadastre-se</a></p>
-            </div>
-          </form>
-        </div>
-        
-        <div class="info-box">
-          <h3>Por que fazer login?</h3>
-          <p>Ao fazer login na EcoSave, você pode acompanhar suas denúncias, receber atualizações sobre os casos e contribuir para a proteção da vida silvestre.</p>
-        </div>
+    <div class="form-container">
+      <div class="form-login">
+        <h2>Faça seu login</h2>
+        <div id="mensagem" class="mensagem" style="display: none;"></div>
+        <form id="formLogin">
+          <div class="campo-form">
+            <label for="email">E-mail</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+
+          <div class="campo-form">
+            <label for="senha">Senha</label>
+            <input type="password" id="senha" name="senha" required>
+          </div>
+
+          <button type="button" class="botao">Entrar</button>
+
+          <div class="links-login">
+            <p>Não tem uma conta? <a href="cadastro.html">Cadastre-se</a></p>
+          </div>
+        </form>
       </div>
+
+      <div class="info-box">
+        <h3>Por que fazer login?</h3>
+        <p>Ao fazer login na EcoSave, você pode acompanhar suas denúncias, receber atualizações sobre os casos e contribuir para a proteção da vida silvestre.</p>
+      </div>
+    </div>
   </div>
 
-<footer>
-  <p>© 2025 EcoSave Resgates — Todos os direitos reservados.</p>
-</footer>
+  <footer>
+    <p>© 2025 EcoSave Resgates — Todos os direitos reservados.</p>
+  </footer>
 
-<script>
-  document.getElementById('formLogin').addEventListener('submit', function(e) {
-    e.preventDefault();
-    realizarLogin();
-  });
-
-  function realizarLogin() {
-    const formLogin = document.getElementById('formLogin');
-    const dados = new FormData(formLogin);
-    const mensagemDiv = document.getElementById('mensagem');
-    
-    // Limpar mensagens anteriores
-    mensagemDiv.style.display = 'none';
-    mensagemDiv.className = 'mensagem';
-    
-    // 1. Gerar chave AES aleatória (256 bits) em base64
-    const aesKey = CryptoJS.lib.WordArray.random(32).toString(CryptoJS.enc.Base64);
-    
-    // 2. Criptografar a senha com AES usando a chave gerada
-    const senha = dados.get('senha');
-    const senhaCriptografada = CryptoJS.AES.encrypt(senha, aesKey).toString();
-    
-    // 3. Substituir senha no form por senha criptografada
-    dados.set('senha', senhaCriptografada);
-    
-    // 4. Criptografar a chave AES com RSA usando a chave pública
-    const rsa = new JSEncrypt();
-    
-    // CHAVE PÚBLICA RSA (deve ser a mesma usada no cadastro)
-    rsa.setPublicKey(`-----BEGIN PUBLIC KEY-----
-MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvIKUh0MjocBcFhNZMhw5
-2GyseU4EdO5yp9MCNAcmyARufM4UZLsj2qmy5I4b+t662l3dJYj07KbdnRJw74LY
-fI+06ET7rRNeRhOVfFQ8SvEJZbhigA7E8ddDnZAbTS4Ubjc6L084mKFtcHgsKhk+
-HQDuu3vC50dFc57l/8we3pf13bqTKUsMvtQFho1TeP/DJ/nUlMp0XbcWvrOZTteF
-QM4mYUAwBvJWfYV3mZlL4e7kFlTcb0tKABeUUsePeUhjaSUkAN4I1ZyUAgXl7laA
-k7vJevvi03RaFL4D6EKRFn5zU+eMWyb1wX1pTDbuAwqAtpPnurYxxaRDNjQ7MzU1
-KQIDAQAB
------END PUBLIC KEY-----`);
-    
-    const chaveEncriptada = rsa.encrypt(aesKey);
-    
-    if (!chaveEncriptada) {
-      mostrarMensagem('Erro ao criptografar chave AES com RSA', 'erro');
-      return;
-    }
-    
-    // 5. Adicionar a chave AES encriptada ao form (campo extra)
-    dados.set('chave', chaveEncriptada);
-    
-    // 6. Enviar para PHP via fetch
-    fetch("../php/login.php", {
-      method: "POST",
-      body: dados
-    })
-    .then(response => {
-      if (!response.ok) {
-        return response.text().then(text => {
-          throw new Error('Erro HTTP: ' + response.status + ' - ' + text);
-        });
-      }
-      return response.json();
-    })
-    .then(data => {
-      if (data.sucesso) {
-        mostrarMensagem(data.mensagem, 'sucesso');
-        // Redirecionar após login bem-sucedido
-        setTimeout(() => {
-          window.location.href = '../index.html';
-        }, 1500);
-      } else {
-        mostrarMensagem(data.mensagem, 'erro');
-      }
-    })
-    .catch(error => {
-      console.error('Erro de conexão ou JSON:', error);
-      mostrarMensagem('Ocorreu um erro inesperado ao conectar ao servidor: ' + error.message, 'erro');
-    });
-  }
-  
-  function mostrarMensagem(texto, tipo) {
-    const mensagemDiv = document.getElementById('mensagem');
-    mensagemDiv.textContent = texto;
-    mensagemDiv.className = `mensagem ${tipo}`;
-    mensagemDiv.style.display = 'block';
-    
-    // Rolar para a mensagem
-    mensagemDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-  }
-  
-  // Simulação de funcionalidade "Esqueci minha senha"
-  document.getElementById('esqueciSenha').addEventListener('click', function(e) {
-    e.preventDefault();
-    const email = document.getElementById('email').value;
-    
-    if (!email) {
-      mostrarMensagem('Por favor, informe seu e-mail para recuperar a senha.', 'erro');
-      return;
-    }
-    
-    mostrarMensagem('Instruções para redefinição de senha foram enviadas para: ' + email, 'sucesso');
-  });
-</script>
-
+  <!-- JS externo -->
+  <script src="../js/login.js"></script>
 </body>
 </html>
