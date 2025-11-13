@@ -1,3 +1,13 @@
+ANTES DE TUDO, PARA TER TOTAL FUNCIONAMENTO, SENDO O HOST, CRIE O ARQUIVO "config.php" E COLE ESTE CODIGO:
+
+<?php 
+// Credenciais do Banco de Dados
+define('DB_HOST', 'localhost:3306');
+define('DB_USER', 'root');
+define('DB_PASS', ''); // <--- COLOQUE A SUA SENHA AQUI
+define('DB_NAME', 'bd_tde_web');
+?>
+
 Este documento de texto detalha a criaçao do nosso Trabalho.
 Nós aproveitamos o contexto de nossa máteria "Arquitetura de Banco de Dados" onde tivemos a ideia de criar um banco para um determinado negócio/ramo,
  que no nosso caso foi o de Resgates de Animais Silvestres por meio de denuncias feitas por pessoas.
