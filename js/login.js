@@ -16,11 +16,9 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
 
-    // --- Criptografia igual ao cadastro ---
     var aesKey = CryptoJS.lib.WordArray.random(32).toString(CryptoJS.enc.Base64);
     var senhaCriptografada = CryptoJS.AES.encrypt(senha, aesKey).toString();
 
-    // Criptografa AES key com RSA (chave pública)
     var rsa = new JSEncrypt();
     rsa.setPublicKey(`-----BEGIN PUBLIC KEY-----
 MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvIKUh0MjocBcFhNZMhw5
@@ -34,11 +32,11 @@ KQIDAQAB
 
     var chaveCriptografada = rsa.encrypt(aesKey);
 
-    // Substitui os valores do form
+
     dados.set("senha", senhaCriptografada);
     dados.set("chave", chaveCriptografada);
 
-    // --- Envia pro PHP ---
+
     fetch("../php/login.php", {
       method: "POST",
       body: dados,

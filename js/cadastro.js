@@ -1,20 +1,18 @@
-// Certifique-se de que as bibliotecas CryptoJS e JSEncrypt estão carregadas no seu HTML antes deste script.
 
 function cadastro() {
   var form_cadastro = document.getElementById("cadastro");
   var dados = new FormData(form_cadastro);
 
-  // 1. Gerar chave AES aleatória (256 bits) em base64
   var aesKey = CryptoJS.lib.WordArray.random(32).toString(CryptoJS.enc.Base64);
 
-  // 2. Criptografar a senha com AES usando a chave gerada
+
   var senha = dados.get('senha');
   var senhaCriptografada = CryptoJS.AES.encrypt(senha, aesKey).toString();
 
-  // 3. Substituir senha no form por senha criptografada
+
   dados.set('senha', senhaCriptografada);
 
-  // 4. Criptografar a chave AES com RSA usando a chave pública
+
   var rsa = new JSEncrypt();
   rsa.setPublicKey(`-----BEGIN PUBLIC KEY-----
 MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvIKUh0MjocBcFhNZMhw5
@@ -33,17 +31,9 @@ KQIDAQAB
     return;
   }
 
-  // 5. Adicionar a chave AES encriptada ao form (campo extra)
   dados.append('chave', chaveCriptografada);
 
-  // 🔎 Teste opcional — verificar o que está sendo enviado
-  /*
-  for (var [k, v] of dados.entries()) {
-    console.log(k, v);
-  }
-  */
 
-  // 6. Enviar para o PHP
   fetch("../php/cadastro.php", {
     method: "POST",
     body: dados

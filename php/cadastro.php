@@ -19,14 +19,14 @@ if (empty($nome) || empty($email) || empty($data) || empty($senhaCriptografada) 
 
 include "conexao.php";
 
-// ⚠️ Agora o INSERT inclui a coluna "chave"
+
 $stmt = $conexao->prepare("INSERT INTO usuarios (nome, email, data_nascimento, telefone, senha, chave) VALUES (?, ?, ?, ?, ?, ?)");
 if (!$stmt) {
     echo json_encode(['sucesso' => false, 'mensagem' => 'Erro na preparação da query: ' . $conexao->error]);
     exit();
 }
 
-// ⚠️ Novo parâmetro para a chave (6 valores)
+
 $stmt->bind_param("ssssss", $nome, $email, $data, $telefone, $senhaCriptografada, $chaveEncriptada);
 
 if ($stmt->execute()) {

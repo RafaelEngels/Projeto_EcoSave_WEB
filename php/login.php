@@ -28,7 +28,7 @@ if ($result->num_rows === 0) {
 $usuario = $result->fetch_assoc();
 $stmt->close();
 
-// ====== Descriptografa a chave AES do banco com RSA privada ======
+
 $privateKey = <<<RSA
 -----BEGIN PRIVATE KEY-----
 MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC8gpSHQyOhwFwW
@@ -66,7 +66,7 @@ if (!openssl_private_decrypt(base64_decode($usuario['chave']), $aesKeyBanco, $pr
     exit;
 }
 
-// ====== Descriptografa senha do banco ======
+
 function decryptAES_CryptoJS($cipherTextBase64, $key) {
     $cipherData = base64_decode($cipherTextBase64);
     if (substr($cipherData, 0, 8) !== "Salted__") return false;
@@ -92,7 +92,7 @@ if ($senhaBanco === false) {
     exit;
 }
 
-// ====== Compara senhas ======
+
 $aesKeyLogin = '';
 if (!openssl_private_decrypt(base64_decode($chaveCriptografada), $aesKeyLogin, $privateKey)) {
     echo json_encode(['sucesso' => false, 'mensagem' => 'Falha ao descriptografar chave RSA enviada']);
